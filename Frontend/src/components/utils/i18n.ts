@@ -1,0 +1,52 @@
+import { subscribe } from "diagnostics_channel"
+
+export const mapLocaleToMeaningfulFormat = (params?: string[]) => {
+    switch ('en') {
+      case 'en': // {mapLocaleToMeaningfulFormat().firstName}
+        return {
+            emptyFirstNameErrorMessage: 'Enter a First Name',
+            emptyLastNameErrorMessage: 'Enter a Last Name',
+            emptyEmailErrorMessage: 'Enter an email address',
+            unknown:'unknown',
+            createAccount:"Create account",
+            enterYourDetailsBelow :"Enter your details below",
+            signUpWithGoogle:"Sign up with Google",
+            alreadyHaveAnAccount:"Already have an account?",
+            login:"Log In",
+            loginYourAccount:"Log In To Your Account",
+            womanFashion :"Woman's Fashion",
+            menFashion :"Men's Fashion",
+            electronics :"Electronics",
+            homeLifestyle :"Home & Lifestyle",
+            medicine: "Medicine",
+            groceries:"Groceries",
+            forgotPassword:"Forgot Password",
+            exclusive:"Exclusive",
+            home:"Home",
+            contact:"Contact",
+            about:"About",
+            signup:"Sign Up",
+            subscribe:"Subscribe",
+            Get10offYourFirstOrder:"Get 10% off your first order",
+            support:"Support",
+            BijoysaraniDhakaDH1515Bangladesh :"111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.",
+            exclusivegmailcom:"exclusive@gmail.com",
+            phoneNumber:"+88015-88888-9999",
+            account:"Account",
+            myAccount:"My Account",
+            register:"Register",
+            cart:"Cart",
+            wishList:"Wishlist",
+            shop:"Shop",
+            quickLink:"Quick Link",
+            privacyPolicy:"Privacy Policy",
+            termsOfUse:"Terms Of Use",
+            faq:"FAQ",
+            downloadApp:"Download App",
+            save$3withAppNewUserOnly:"Save $3 with App New User Only",
+            viewAllProducts:"View All the Products",
+            todays : "Today's",
+            flashSales :"Flash Sales",
+        }
+    }
+}
