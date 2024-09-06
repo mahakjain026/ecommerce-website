@@ -1,5 +1,6 @@
 const Product = require("../models/product.model");
-const indexAlgolia = require("../../scripts/indexAlgolia")
+const reviews = require("../models/review.model");
+const indexAlgolia = require('../../scripts/indexAlgolia')
 
 const createProduct = async (req, res) => {
   try {
@@ -24,7 +25,7 @@ const createProduct = async (req, res) => {
 const getAllProducts = async (req, res) => {
   try {
     const products = await Product.find({})
-    //   .populate("reviews");
+      .populate("reviews");
     res.status(200).json(products);
   } catch (error) {
     console.log("error",error)
@@ -36,13 +37,14 @@ const getProductById = async (req, res) => {
   try {
     const productId = req.query.id;
     console.log("productId",productId)
-    const product = await Product.findOne({ _id: productId });
+    const product = await Product.findOne({ _id: productId }).populate("reviews");
     console.log("product",product)
     if (!product) {
       return res.status(404).json({ message: "Product not Found" });
     }
     return res.status(200).json(product);
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: "Something went wrong" });
   }
 };
@@ -58,16 +60,15 @@ const updateProduct = async (req, res) => {
         new: true,
       }
     );
-    console.log("product", product);
     if (!product) {
       return res.status(404).json({ message: "Product not Found" });
     }
     await indexAlgolia();
     return res
       .status(201)
-      .json({ message: "Product is updated" })
       .json(product);
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: "Something went wrong" });
   }
 };
@@ -83,6 +84,7 @@ const deleteProduct = async (req, res) => {
     await indexAlgolia();
     return res.status(201).json({ message: "Product is deleted successfully" });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: "Something went wrong" });
   }
 };
