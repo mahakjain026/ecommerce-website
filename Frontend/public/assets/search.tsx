@@ -16,7 +16,7 @@ const Icon: React.FC<Props> = ({ className ,width , height}: Props) =>{
       className={className}
     >
       <path
-        stroke="#000"
+        stroke="#717288"
         strokeLinecap="round"
         strokeWidth="1.5"
         d="M20 20l-3.778-3.784m2.094-5.058a7.158 7.158 0 11-14.316 0 7.158 7.158 0 0114.316 0v0z"

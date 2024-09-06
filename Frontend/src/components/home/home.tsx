@@ -44,7 +44,7 @@ export const Home = () => {
   }, []);
   return (
     <>
-      <section>
+      <section className="w-full">
         <Banner />
       </section>
       <section className="mx-32">

@@ -1,19 +1,16 @@
 import React, { useState, useEffect, useRef, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import algoliasearch from "algoliasearch/lite";
+import  algoliasearch  from "algoliasearch";
 import SearchIcon from "../../../../public/assets/search"
 import AutoComplete from '../Autocomplete';
 // import debounce from 'lodash.debounce';
+
 const dotenv = require('dotenv');
-
-dotenv.config({ path: '../.env' });
-console.log("dotenv.config", process.env.Algolia_ApplicationID, process.env.Algolia_APIKey)
-const AppId = process.env.Algolia_ApplicationID 
-const AppKey = process.env.Algolia_APIKey 
-
-
-
 const SearchBox = () => {
+
+  dotenv.config({ path: '../.env' });
+  const AppId = process.env.Algolia_ApplicationID
+  const AppKey = process.env.Algolia_APIKey
   const [searchInput, setSearchInput] = useState('');
   const [productSearches, setProductSearches] = useState<any[]>([]);
   const [searchClient, setSearchClient] = useState<any>(null);
@@ -78,16 +75,13 @@ const SearchBox = () => {
 
 
   useEffect(() => {
-    console.log("useeffect", AppId, AppKey);
-    if (!AppId || !AppKey) {
-      console.error("Algolia Application ID or API Key is missing.");
-      return; 
-    }
     if (!searchClient) {
-      const client = algoliasearch(AppId, AppKey); 
+      const client = algoliasearch('WQPTQU40BO', 'b1f1abd73ab9a8c8ca5a11fd57fb840a');
+      const index = client.initIndex('Products');
+      index.getSettings().then((result:any)=> console.log(result));
+      
       setSearchClient(client);
     }
-  
     const storedSearches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
     setRecentSearches(storedSearches);
   }, [searchClient]);
@@ -144,14 +138,14 @@ const SearchBox = () => {
 
   return (
     <section>
-      <form method="get" onSubmit={handleSubmit}>
-        <input className="rounded-l-md border-2"
+      <form method="get" onSubmit={handleSubmit} className='flex  p-1.5 bg-[#F5F5F6]' >
+        <input className="bg-[#F5F5F6]"
           type="text"
           aria-label="search submit"
           autoComplete="off"
           onChange={handleSearchChange}
         ></input>
-        <button className="rounded-r-md"
+        <button
           aria-label="Search"
           type="submit"
           disabled={searchInput?.length === 0 || searchInput?.length < 3}

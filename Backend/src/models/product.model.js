@@ -1,29 +1,11 @@
 const mongoose = require("mongoose");
+const Reviews = require("./review.model");
 const slugify = require("slugify");
 const algoliasearch = require('algoliasearch');
 const env = require("dotenv");
 env.config({path:"../.env"});
 const client = algoliasearch(`${process.env.Algolia_ApplicationID}`, `${process.env.Algolia_APIKey}`);
 const index = client.initIndex('Products');
-
-// const reviewSchema = new mongoose.Schema({
-//     user: {
-//         type: String,
-//         required: true
-//     },
-//     rating: {
-//         type: Number,
-//         required: true,
-//         min: 1,
-//         max: 5
-//     },
-//     comment: {
-//         type: String,
-//         required: true
-//     }
-// }, {
-//     timestamps: true
-// });
 
 const productSchema = new mongoose.Schema({
   name: {
@@ -54,10 +36,10 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // reviews:[ {
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     ref:"Reviews"
-  // }],
+  reviews:[ {
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"Reviews",
+  }],
 });
 
 productSchema.pre("save", async function (next) {
