@@ -5,11 +5,19 @@ import LikeIcon from "../../../public/assets/like";
 import CartIcon from "../../../public/assets/cart";
 import UserIcon from "../../../public/assets/user";
 import { useEffect, useState } from "react";
-import { usePathname } from 'next/navigation';
+import { usePathname,useRouter } from 'next/navigation';
 
 export const Header = () => {
     const pathname = usePathname()
+    const router = useRouter();
     const [SignUp, SetSignUp] = useState(true);
+    useEffect(() => {
+        if (pathname === "/SignUp") {
+            SetSignUp(true);
+        } else {
+            SetSignUp(false);
+        }
+    }, [pathname]);
     return (
         <section className="h-6 flex items-center mt-12 gap-x-40">
             <section className="flex items-center justify-center gap-x-48">
@@ -30,7 +38,7 @@ export const Header = () => {
                     <section>
                         <CartIcon width="20" height="20" />
                     </section>
-                    <section >
+                    <section onClick={()=>router.push("/Login")}>
                         {SignUp === false ? <UserIcon width="20" height="20"></UserIcon> : <></>}
                     </section>
                 </section>

@@ -47,10 +47,9 @@ export const Home = () => {
       <section className="w-full">
         <Banner />
       </section>
-      <section className="mx-32">
+      <section className="md-mx-32">
         <section>
           <Header />
-          {/* <Search /> */}
         </section>
         <hr className="mt-6" />
 
