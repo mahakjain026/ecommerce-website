@@ -12,6 +12,7 @@ const createProduct = async (req, res) => {
       price,
       imageUrl,
       category,
+      discountedPrice
     });
     await product.save();
     await indexAlgolia();
@@ -52,7 +53,6 @@ const getProductById = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     const productId = req.query.id;
-    console.log("Id", productId);
     const product = await Product.findByIdAndUpdate(
       { _id: productId },
       req.body,
@@ -64,6 +64,7 @@ const updateProduct = async (req, res) => {
       return res.status(404).json({ message: "Product not Found" });
     }
     await indexAlgolia();
+    console.log("product", product);
     return res
       .status(201)
       .json(product);
@@ -76,7 +77,6 @@ const updateProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
   try {
     const productId = req.query.id;
-    console.log("productId", productId);
     const deleteProduct = await Product.findByIdAndDelete({ _id: productId });
     if (!deleteProduct) {
       return res.status(404).json({ message: "Product not found" });

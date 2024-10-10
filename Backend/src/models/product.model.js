@@ -1,11 +1,14 @@
 const mongoose = require("mongoose");
 const Reviews = require("./review.model");
 const slugify = require("slugify");
-const algoliasearch = require('algoliasearch');
+const algoliasearch = require("algoliasearch");
 const env = require("dotenv");
-env.config({path:"../.env"});
-const client = algoliasearch(`${process.env.Algolia_ApplicationID}`, `${process.env.Algolia_APIKey}`);
-const index = client.initIndex('Products');
+env.config({ path: "../.env" });
+const client = algoliasearch(
+  `${process.env.Algolia_ApplicationID}`,
+  `${process.env.Algolia_APIKey}`
+);
+const index = client.initIndex("Products");
 
 const productSchema = new mongoose.Schema({
   name: {
@@ -36,10 +39,16 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  reviews:[ {
+  reviews: [
+    {
       type: mongoose.Schema.Types.ObjectId,
-      ref:"Reviews",
-  }],
+      ref: "Reviews",
+    },
+  ],
+  discountedPrice: {
+    type: String,
+    required: false,
+  },
 });
 
 productSchema.pre("save", async function (next) {
@@ -55,18 +64,21 @@ productSchema.pre("save", async function (next) {
 });
 
 // Post-save hook to update Algolia index
-productSchema.post('save', function (doc) {
-  index.saveObject({
-    objectID: doc._id.toString(),
-    ...doc.toObject(),
-  }).catch(err => console.error('Error indexing document to Algolia', err));
+productSchema.post("save", function (doc) {
+  index
+    .saveObject({
+      objectID: doc._id.toString(),
+      ...doc.toObject(),
+    })
+    .catch((err) => console.error("Error indexing document to Algolia", err));
 });
 
 // Post-remove hook to delete from Algolia index
-productSchema.post('remove', function (doc) {
-  index.deleteObject(doc._id.toString()).catch(err => console.error('Error deleting document from Algolia', err));
+productSchema.post("remove", function (doc) {
+  index
+    .deleteObject(doc._id.toString())
+    .catch((err) => console.error("Error deleting document from Algolia", err));
 });
-
 
 const Product = mongoose.model("Product", productSchema);
 module.exports = Product;
