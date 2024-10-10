@@ -28,7 +28,7 @@ export const Header = () => {
                         <LikeIcon width="20" height="20" />
                     </section>
                     <section>
-                        <CartIcon width="20" height="20" />
+                        <CartIcon width="20" height="22" />
                     </section>
                     <section >
                         {SignUp === false ? <UserIcon width="20" height="20"></UserIcon> : <></>}
