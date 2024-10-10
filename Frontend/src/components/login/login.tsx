@@ -1,6 +1,6 @@
 "use client";
 import { Banner } from "../banner/banner";
-import { Header } from "../header/header";
+import { Header } from "../header";
 import SideImage from "../../../public/assets/sideimage";
 import { InputField } from "../common/validationform/inputField";
 import { Footer } from "../footer/footer";

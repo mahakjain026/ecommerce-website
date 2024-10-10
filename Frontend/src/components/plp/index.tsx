@@ -47,7 +47,7 @@ import { ProductItem } from "./ProductItem";
 import { Hits, InstantSearch, useHits } from 'react-instantsearch-hooks-web';
 import { redirect } from "next/navigation";
 import algoliaSearch from 'algoliasearch';
-import { Header } from "../header/header";
+import { Header } from "../header";
 import { Banner } from "../banner/banner";
 // import { searchClient } from "../../../algolia/searchClient";
 
@@ -57,14 +57,15 @@ export const Plp = () => {
   return (
     <section>
       <Banner />
-      <section className="md-mx-32">
+      <section>
         <section className="w-full">
           <Header />
         </section>
-        <hr className="my-8" />
-      <InstantSearch searchClient={searchClient} indexName="Products">
-        <ProductListingContent />
-      </InstantSearch>
+        <section className="md:mx-32">
+          <InstantSearch searchClient={searchClient} indexName="Products">
+            <ProductListingContent />
+          </InstantSearch>
+        </section>
       </section>
     </section>
   );

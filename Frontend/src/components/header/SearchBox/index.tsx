@@ -138,12 +138,13 @@ const SearchBox = () => {
 
   return (
     <section>
-      <form method="get" onSubmit={handleSubmit} className='flex  p-1.5 bg-[#F5F5F6]' >
-        <input className="bg-[#F5F5F6]"
+      <form method="get" onSubmit={handleSubmit} className='flex bg-white p-1 ml-3 border-2 rounded-full shadow-lg shadow-gray-300' >
+        <input className="text-base font-normal text-white bg-white "
           type="text"
           aria-label="search submit"
           autoComplete="off"
           onChange={handleSearchChange}
+          placeholder='Search here'
         ></input>
         <button
           aria-label="Search"
