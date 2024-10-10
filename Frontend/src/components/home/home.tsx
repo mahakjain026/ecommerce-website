@@ -1,6 +1,6 @@
 "use client";
 import { Banner } from "../banner/banner";
-import { Header } from "../header/header";
+import { Header } from "../header";
 import { SideBar } from "../sidebar/sidebar";
 import Frame from "../../../public/assets/frame";
 import React, { useEffect, useState } from "react";
@@ -47,14 +47,12 @@ export const Home = () => {
       <section className="w-full">
         <Banner />
       </section>
-      <section className="mx-32">
-        <section>
-          <Header />
-          {/* <Search /> */}
-        </section>
-        <hr className="mt-6" />
-
-        <section>
+      <section>
+        <Header />
+      </section>
+      <hr className="mt-6" />
+      <section className="md:mx-32">
+        <section >
           <section className="flex mt-14 justify-between ">
             <section className="border-r-2 w-full">
               <SideBar />
@@ -75,7 +73,7 @@ export const Home = () => {
               <h1 className="">{mapLocaleToMeaningfulFormat().flashSales}</h1>
               <CountDown></CountDown>
             </section>
-            <div className=" flex gap-x-7 mt-10 ">
+            <div className="flex gap-x-7 mt-10 ">
               <Swiper
                 modules={[Navigation, Pagination, A11y]}
                 spaceBetween={50}
