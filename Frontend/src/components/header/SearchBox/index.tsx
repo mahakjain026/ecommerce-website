@@ -20,10 +20,7 @@ const SearchBox = () => {
   const [isDropdownVisible, setDropdownVisible]: any = useState(false);
   const [popularSearches, setPopularSearches]: any = useState([
     'Dresses',
-    'Women',
-    'New Balance',
-    'Asics',
-    'Skechers',
+    'Women'
   ]);
 
   const searchRef = useRef<HTMLDivElement>(null);
@@ -67,6 +64,7 @@ const SearchBox = () => {
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    console.log("handlesubmit",searchInput)
     e.preventDefault();
     if (searchInput?.length >= 3) {
       router.push(`/search?q=${encodeURIComponent(searchInput)}`);
@@ -118,33 +116,43 @@ const SearchBox = () => {
   const handleSearchAutoComplete = async (searchQuery: string) => {
     const queries = [
       {
-        query: searchQuery,
+        indexName: 'Products',
         params: {
-          HitsPerPage: 5
+          query: searchQuery,
+          hitsPerPage: 5
         }
       }
     ]
-
-    const responses = await searchClient?.search(queries);
-    if (responses?.results[0]?.hits.length > 0) {
-      updateRecentSearches(searchQuery);
-      setProductSearches(responses?.results[0]?.hits);
-      const filterRecentSearches = [...recentSearches].filter((recent: any) => recent.includes(searchQuery));
-      setMatchedRecentSearches(filterRecentSearches);
-    } else {
-      setProductSearches([]);
+    console.log("searchClient",searchClient?.search(queries))
+    try {
+      const responses = await searchClient?.search(queries);
+      console.log("responsesssssssss", responses);
+  
+      if (responses?.results[0]?.hits.length > 0) {
+        updateRecentSearches(searchQuery);
+        setProductSearches(responses?.results[0]?.hits);
+        const filterRecentSearches = [...recentSearches].filter((recent: any) => recent.includes(searchQuery));
+        setMatchedRecentSearches(filterRecentSearches);
+      } else {
+        setProductSearches([]);
+      }
+    } catch (error) {
+      console.error("Error fetching search results:", error);
     }
   }
 
   return (
     <section>
-      <form method="get" onSubmit={handleSubmit} className='flex bg-white p-1 ml-3 border-2 rounded-full shadow-lg shadow-gray-300' >
-        <input className="text-base font-normal text-white bg-white "
+      <form method="get" onSubmit={handleSubmit} className='flex bg-white p-1 border-2 rounded-sm shadow-lg shadow-gray-300 w-full' >
+        <input className="text-base font-normal bg-white "
           type="text"
           aria-label="search submit"
           autoComplete="off"
           onChange={handleSearchChange}
           placeholder='Search here'
+          onFocus={() => {
+            setDropdownVisible(true);
+          }}
         ></input>
         <button
           aria-label="Search"

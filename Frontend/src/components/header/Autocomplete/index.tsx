@@ -24,8 +24,12 @@ const AutoCompleteComponent: React.FC<Props> = ({
     };
     console.log("productSearches", productSearches)
     return (
-        <section>
-            <div>
+        <div className="relative z-30 mr-4 w-full md:mr-0 md:w-full lg:mr-0">
+            <div
+                className={
+                    'absolute top-full max-h-[430px] w-full overflow-y-auto border-x border-b border-foggyGray bg-white shadow-md'
+                }
+            >
                 {searchInput ? (
                     setMatchedRecentSearches?.length ? (
                         <>
@@ -112,7 +116,7 @@ const AutoCompleteComponent: React.FC<Props> = ({
                     '4'
                 )}
             </div>
-        </section >
+        </div >
     )
 }
 

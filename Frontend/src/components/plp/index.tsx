@@ -58,7 +58,7 @@ export const Plp = () => {
     <section>
       <Banner />
       <section>
-        <section className="w-full">
+        <section className="w-full mb-6">
           <Header />
         </section>
         <section className="md:mx-32">

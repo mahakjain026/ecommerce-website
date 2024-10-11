@@ -50,7 +50,7 @@ export const Home = () => {
       <section>
         <Header />
       </section>
-      <hr className="mt-6" />
+      <hr className="mt-6 mx-32" />
       <section className="md:mx-32">
         <section >
           <section className="flex mt-14 justify-between ">

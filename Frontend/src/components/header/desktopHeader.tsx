@@ -45,7 +45,6 @@ export const DesktopHeader = () => {
                     </section>
                 </section>
             </section>
-            <hr className="my-8" />
         </>
     )
 }
