@@ -20,7 +20,7 @@ export const DesktopHeader = () => {
     }, [pathname]);
     return (
         <>
-            <section className="h-6 flex items-center mt-12 md:mx-32 justify-between">
+            <section className="h-6 flex items-center mt-6 md:mx-32 justify-between">
                 <section className="flex items-center justify-between ">
                     <section className=""><p className="text-2xl font-bold">Exclusive</p></section>
                 </section>

@@ -5,8 +5,8 @@ const algoliasearch = require("algoliasearch");
 const env = require("dotenv");
 env.config({ path: "../.env" });
 const client = algoliasearch(
-  `${process.env.Algolia_ApplicationID}`,
-  `${process.env.Algolia_APIKey}`
+  `${process.env.NEXT_PUBLIC_ALGOLIA_APP_ID}`,
+  `${process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY}`
 );
 const index = client.initIndex("Products");
 

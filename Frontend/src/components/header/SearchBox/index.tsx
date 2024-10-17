@@ -9,8 +9,8 @@ const dotenv = require('dotenv');
 const SearchBox = () => {
 
   dotenv.config({ path: '../.env' });
-  const AppId = process.env.Algolia_ApplicationID
-  const AppKey = process.env.Algolia_APIKey
+  const AppId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID
+  const AppKey = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY
   const [searchInput, setSearchInput] = useState('');
   const [productSearches, setProductSearches] = useState<any[]>([]);
   const [searchClient, setSearchClient] = useState<any>(null);
@@ -76,7 +76,7 @@ const SearchBox = () => {
     if (!searchClient) {
       const client = algoliasearch('WQPTQU40BO', 'b1f1abd73ab9a8c8ca5a11fd57fb840a');
       const index = client.initIndex('Products');
-      index.getSettings().then((result:any)=> console.log(result));
+      index.getSettings().then((result:any)=> console.log("result",result));
       
       setSearchClient(client);
     }

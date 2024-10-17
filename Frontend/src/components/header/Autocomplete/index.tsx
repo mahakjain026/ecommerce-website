@@ -81,9 +81,10 @@ const AutoCompleteComponent: React.FC<Props> = ({
                 {searchInput.length >= 3 && productSearches?.length ? (
                     <ul className="m-2.5">
                         {productSearches?.map((product: any, index: any) => {
+                            console.log("index",index);
                             return (
                                 <li key={product?.objectID + index}>
-                                    <Link href={`/product/${product.slug}/${product.key}`} className="flex items-center gap-2 p-2">
+                                    <Link href={`/product/${product.slug}/${product._id}`} className="flex items-center gap-2 p-2">
                                         {product?.displayName}
                                     </Link>
                                 </li>

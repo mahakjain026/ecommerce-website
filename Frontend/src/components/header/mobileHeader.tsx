@@ -57,13 +57,13 @@ const style = {
   brand: `inline-block pt-1.5 pb-1.5 mr-4 cursor-pointer text-2xl font-bold whitespace-nowrap hover:text-gray-400`,
 };
 
-function HamburgerMenu({ children, bgColor, textColor }: any) {
+export const HamburgerMenu=({ children, bgColor, textColor }: any) => {
   return (
     <nav className={`${bgColor} ${textColor} ${style.navbar}`}>{children}</nav>
   );
 }
 
-function HamburgerMenuBrand({ children, href }: any) {
+export const HamburgerMenuBrand = ({ children, href }: any) => {
   return (
     <a href={href} className={style.brand}>
       <strong>{children}</strong>
@@ -71,7 +71,7 @@ function HamburgerMenuBrand({ children, href }: any) {
   );
 }
 
-function HamburgerMenuToggler({ toggle }: any) {
+export const HamburgerMenuToggler =({ toggle }: any) => {
   return (
     <button
       type="button"
@@ -85,10 +85,10 @@ function HamburgerMenuToggler({ toggle }: any) {
   );
 }
 
-function HamburgerMenuCollapse({ children, open }: any) {
-  const ref = React.useRef(null);
-
-  const inlineStyle = open
+export const HamburgerMenuCollapse = ({ children, open }: any) =>{
+  const ref :any = React.useRef(null);
+  
+  const inlineStyle : any  = open
     ? { height: ref.current?.scrollHeight }
     : { height: 0, visibility: 'hidden', opacity: 0 };
 
@@ -99,16 +99,16 @@ function HamburgerMenuCollapse({ children, open }: any) {
   );
 }
 
-function HamburgerMenuNav({ children }) {
+export const HamburgerMenuNav = ({ children }:any) => {
   return <ul className={style.nav}>{children}</ul>;
 }
 
-function HamburgerMenuItem({ children }) {
+export const HamburgerMenuItem = ({ children }:any) => {
   return <li>{children}</li>;
 }
 
 /* You can wrap the a tag with Link and pass href to Link if you are using either Create-React-App, Next.js or Gatsby */
-function HamburgerMenuLink({ children, href }) {
+export const HamburgerMenuLink = ({ children, href }:any) => {
   return (
     <a href={href} className={style.link}>
       {children}
